@@ -15,9 +15,9 @@ Bíblia em formato Markdown com imagens de SweetPublishing
 #### 1
 No princípio criou Deus os céus e a terra.
 
-![](.img/Gn/01/1-0.jpg)
+![](1-0.jpg)
 
 #### 2
 E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.
 
-![](.img/Gn/01/2-0.jpg)
+![](2-0.jpg)
