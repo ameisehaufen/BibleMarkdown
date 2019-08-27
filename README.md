@@ -16,8 +16,11 @@ Faça o Download da versão completa na seção Releases, olhe o exemplo do Livr
 
 #### 1
 No princípio criou Deus os céus e a terra.
+
 > **Criou Deus.** O verbo “criar” vem do hebraico ‘bara, que na forma aqui usada descreve uma atividade de Deus, nunca do ser humano. … As primeiríssimas palavras da Bíblia apontam para o fato de que a criação traz a marca da atividade do próprio Deus.
+
 > Minhas anotações sobre o versículo
+
 > Posso colocar versiculos relacionados como links [Gn 2:3](Gn/2.md#3)
 
 ![](1-0.jpg)
