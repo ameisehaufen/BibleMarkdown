@@ -1,7 +1,7 @@
 # BibleMarkdown
 Bíblia em formato Markdown com imagens de SweetPublishing
 
-Faça o Download da versão completa na seção Releases, olhe o exemplo do Livro de Gênesis no diretório Gn deste repositório.
+Faça o Download da versão completa na seção Releases, navegue pela bíblia completa diretamente pelo diretório [acf2007-sweet](acf2007-sweet) deste repositório.
 
 ## Motivação
 - Após incansáveis pesquisas, esse é o único formato digital realmente livre de uma Bíblia que permita anotações.
