@@ -25,10 +25,9 @@ Os arquivos de suporte estão no diretório "original".
 
 ## Exemplo
 
-### Gênesis
+### Gênesis Capítulo 1
 
-#### 1
-No princípio criou Deus os céus e a terra.
+1   No princípio criou Deus os céus e a terra.
 
 > **Criou Deus.** O verbo “criar” vem do hebraico ‘bara, que na forma aqui usada descreve uma atividade de Deus, nunca do ser humano. … As primeiríssimas palavras da Bíblia apontam para o fato de que a criação traz a marca da atividade do próprio Deus.
 
@@ -38,16 +37,12 @@ No princípio criou Deus os céus e a terra.
 
 ![](1-0.jpg)
 
-#### 2
-E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.
+2   E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.
 
 ![](2-0.jpg)
 
-#### 3
-E disse Deus: Haja luz; e houve luz.
+3   E disse Deus: Haja luz; e houve luz.
 
-#### 4
-E viu Deus que era boa a luz; e fez Deus separação entre a luz e as trevas.
+4   E viu Deus que era boa a luz; e fez Deus separação entre a luz e as trevas.
 
-#### 5
-E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, o dia primeiro.
+5   E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, o dia primeiro.
