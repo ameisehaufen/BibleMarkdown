@@ -23,20 +23,19 @@ for i in ${livros[@]}; do
         echo -e "# "${livros_nomes[$contador_livros]}" Capítulo $j\n" >> "${livros_abrev[$contador_livros]}"/$j.md
         count=1
         for k in "${versiculos[@]}"; do
-            [ ! -d ".img" ] && mkdir .img
-            [ ! -d ".img/"${livros_abrev[$contador_livros]}"" ] && mkdir .img/"${livros_abrev[$contador_livros]}"
-            [ ! -d ".img/"${livros_abrev[$contador_livros]}"/$nr_cap" ] && mkdir .img/"${livros_abrev[$contador_livros]}"/$nr_cap
+            [ ! -d "${livros_abrev[$contador_livros]}/.img" ] && mkdir "${livros_abrev[$contador_livros]}/.img"
             # ESCRITA NO INICIO DO VERSICULO
-            echo -e '##' $count"\n${k%%$'\n'*}\n" >> "${livros_abrev[$contador_livros]}"/$j.md
-            arquivo_imagem="Images/$nr_livro/610px/${nr_livro}_${livros_abrev_en[$contador_livros]}_${nr_cap}_$(printf '%02d' $count)_RG.jpg"
+            echo -e $count"\t${k%%$'\n'*}\n" >> "${livros_abrev[$contador_livros]}"/$j.md
+            dir_imagem="Images/$nr_livro/610px"
+            arquivo_imagem="${nr_livro}_${livros_abrev_en[$contador_livros]}_${nr_cap}_$(printf '%02d' $count)_RG.jpg"
             echo "Imagem: $arquivo_imagem"
-            if [ -f $arquivo_imagem ]; then
+            if [ -f "$dir_imagem/$arquivo_imagem" ]; then
                 # proximo_nr=$(( $(ls ".img/"${livros_abrev[$contador_livros]}"/$nr_cap/$count*" | wc -l) + 1 ))
                 # [ ! "$proximo_nr" >= 0 ] && proximo_nr=0
-                novo_arquivo=".img/"${livros_abrev[$contador_livros]}"/$nr_cap/$count-0.jpg"
+                novo_arquivo="${livros_abrev[$contador_livros]}/.img/$arquivo_imagem"
                 echo "Novo: $novo_arquivo"
-                convert "$arquivo_imagem" -quality 40% -resize x180 "$novo_arquivo"
-                echo -e '![]('../$novo_arquivo")\n" >> "${livros_abrev[$contador_livros]}"/$j.md
+                convert "$dir_imagem/$arquivo_imagem" -quality 40% -resize x180 "$novo_arquivo"
+                echo -e '![]('.img/$arquivo_imagem")\n" >> "${livros_abrev[$contador_livros]}"/$j.md
             fi
             (( count++ ))
         done

@@ -1,7 +1,9 @@
 # BibleMarkdown
-Bíblia em formato Markdown com imagens de SweetPublishing
+Bíblia em formato Markdown com imagens de SweetPublishing.
 
-Faça o Download da versão completa na seção Releases, olhe o exemplo do Livro de Gênesis no diretório Gn deste repositório.
+Esta versão da Bíblia foi baixada do projeto The Sword da CrossBible Society. É a versão de João Ferreira de Almeida Corrigida Fiel de 2007, a versão considerada por muitos como a mais fiel na língua portuguesa.
+
+Faça o Download da versão completa na seção Releases, ou, melhor, faça o Download deste repositório. Olhe o exemplo do Livro de Gênesis no diretório Gn deste repositório.
 
 ## Motivação
 - Após incansáveis pesquisas, esse é o único formato digital realmente livre de uma Bíblia que permita anotações.
@@ -9,6 +11,17 @@ Faça o Download da versão completa na seção Releases, olhe o exemplo do Livr
 - Sincronize com todos seus dispositivos em tempo real, sem complicações, usando a nuvem que preferir.
 - Use a bíblia mais FIEL ao texto original em português (Almeida Corrigida Fiel), mas se quiser usar outra, basta executar o script criar_biblia, com o arquivo de entrada adequado e algumas pequenas modificações vc pode ter qualquer Bíblia nesse formato.
 - Se quiser pode retirar todas as imagens, ou ainda, adicionar outras facilmente, basta um simples script bash ou na linguagem que preferir.
+
+## Como criar sua própria Bíblia em Markdown
+Os arquivos de suporte estão no diretório "original".
+- Use o software Simple Bible Reader, que é um conversor. Abra um formato qualquer (MySword, e-Sword, etc).
+- Converta para o formato que tenha um versículo por linha e nr de capítulo e versículo separados por tabulação (se não me engano é unnamed USV, algo assim)
+- coloque o arquivo no mesmo diretório do script cria biblia.
+- As Imagens podem ser baixadas de SweetPublishing, depois coloque em um Diretório chamado Imagens.
+- Execute o script e crie sua bíblia markdown com imagens.
+
+## Atenção
+- Fique atento com bíblias em formato texto, pdf, etc, sem procedência, podem estar alteradas, incompletas, etc.
 
 ## Exemplo
 
