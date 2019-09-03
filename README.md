@@ -14,8 +14,9 @@ Faça o Download da versão completa na seção Releases, navegue pela bíblia c
 
 ## Como criar sua própria Bíblia em Markdown
 Os arquivos de suporte estão no diretório "original".
-- Use o software Simple Bible Reader, que é um conversor. Abra um formato qualquer (MySword, e-Sword, etc).
-- Converta para o formato que tenha um versículo por linha e nr de capítulo e versículo separados por tabulação (se não me engano é unnamed USV, algo assim)
+- Use o software Simple Bible Reader (selecione o idioma espanhol), que é um conversor. Abra um formato qualquer (MySword, e-Sword, etc).
+- Converta para o formato que tenha um versículo por linha e nr de capítulo e versículo separados por tabulação (The Unbound bible - Unnamed BCSV)
+- Se for converter um comentário, use o formato de exportação 
 - coloque o arquivo no mesmo diretório do script cria biblia.
 - As Imagens podem ser baixadas de SweetPublishing, depois coloque em um Diretório chamado Imagens.
 - Execute o script e crie sua bíblia markdown com imagens.
