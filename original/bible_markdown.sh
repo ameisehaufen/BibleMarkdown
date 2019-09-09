@@ -9,7 +9,6 @@ help_dependencies="imagemagick"
 help_notes="Instale o pandoc e imagemagick"
 # Declaração de variaveis de início
 bibles_dir="$PWD"
-biblia='acf2007-original.txt'
 livros_nomes=( "Prefácio" Gênesis Êxodo Levítico Números Deuteronomio Josué Juízes Rute 1Samuel "2 Samuel" "1 Reis" "2 Reis" "1 Crônicas" "2 Crônicas" Esdras Neemias Ester "Jó" Salmos Provérbios Eclesiastes "Cantares de Salomão" Isaías Jeremías Lamentações Ezequiel Daniel Oséias Joel Amós Obadias Jonas Miquéias Naum Habacuque Sofonias Ageu Zacarias Malaquias Mateus Marcos Lucas João "Atos dos Apóstolos" Romanos "1 Coríntios" "2 Coríntios" Gálatas Efésios Filipenses Colossenses "1 Tessalonisences" "2 Tessalonisences" "1 Timóteo" "2 Timóteo" "Tito" Filemon Hebreus Tiago "1 Pedro" "2 Pedro" "1 João" "2 João" "3 João" Judas Apocalipse )
 livros_abrev=( Pref Gn Ex Lv Nm Dt Js Jz Rt 1Sm 2Sm 1Rs 2Rs 1Cr 2Cr Es Ne Et Jo Sl Pv Ec Ct Is Jr Lm Ez Dn Os Jl Am Ob Jn Mq Na Hc Sf Ag Zc Ml Mt Mc Lc Joa At Rm 1Co 2Co Gl Ef Fp Cl 1Ts 2Ts 1Tm 2Tm Tt Fm Hb Tg 1Pe 2Pe 1Jo 2Jo 3Jo Jd Ap )
 livros_prefixos=( 00- 01A- 02A- 03A- 04A- 05A- 06A- 07A- 08A- 09A- 10A- 11A- 12A- 13A- 14A- 15A- 16A- 17A- 18A- 19A- 20A- 21A- 22A- 23A- 24A- 25A- 26A- 27A- 28A- 29A- 30A- 31A- 32A- 33A- 34A- 35A- 36A- 37A- 38A- 39A- 40N- 41N- 42N- 43N- 44N- 45N- 46N- 47N- 48N- 49N- 50N- 51N- 52N- 53N- 54N- 55N- 56N- 57N- 58N- 59N- 60N- 61N- 62N- 63N- 64N- 65N- 66N- )
@@ -41,7 +40,10 @@ done
 printQuestion -m "Criar Biblia" "Inserir Comentarios" "Remover Comentarios" "Copiar Imagens do SQL" "Copiar csv do SQL" "Salvar MEUS comentários" "Biblia em PDF"
 case $? in
 1)
+	# AS bíblias sempre devem estar no formato da bible-acf2007.csv
+	biblia="$(printQuestion -m -c 'ls bible-*.csv')"
 	[ ! -f $biblia ] && exit 1
+	printQuestion -p "Deseja continuar? Agora vai! "
 	mkdir "${livros_abrev_pref[0]}" && touch "${livros_abrev_pref[0]}"/0.md
 	contador_livros=1
 	# Le o arquivo da bíblia
@@ -63,11 +65,14 @@ case $? in
 	        for k in "${versiculos[@]}"; do
 	            # [ ! -d "${livros_abrev[$contador_livros]}/.img" ] && mkdir "${livros_abrev[$contador_livros]}/.img"
 	            # ESCRITA NO INICIO DO VERSICULO
-	            echo -e "**${count}** \t${k%%$'\n'*}\n" >> "${livros_abrev_pref[$contador_livros]}"/${nr_cap}.md
-	            bible_pictures=( $(cat bible_pictures.txt | grep -E "^${livros_abrev_en[$contador_livros]}"$'\t'"${j}"$'\t'"${count}"$'\t' | cut -f4- ) )
+	            echo -e "**${count}** \t${k%%$'\n'*}\n" >> "${livros_abrev_pref[$contador_livros]}"/${nr_cap}.md 
+	            readarray bible_pictures < <(cat images-catalog.csv | grep -E "^$contador_livros"$'\t'"${j}"$'\t'"${count}"$'\t' )
 	            for l in "${bible_pictures[@]}"; do
-	                if [ -f "Images/SweetPublishing/$l" ]; then
-	                    echo -en "![](../Images/SweetPublishing/$l) " >> "${livros_abrev_pref[$contador_livros]}"/${nr_cap}.md
+					image_file="$(echo "$l" | cut -f 4)"
+					image_folder="$(echo "$l" | cut -f 5)"
+					image_leg=''
+	                if [ -f "Images/$image_folder/$image_file" ]; then
+	                    echo -en "![$image_leg](../Images/$image_folder/$image_file) " >> "${livros_abrev_pref[$contador_livros]}"/${nr_cap}.md
 	                fi
 	            done
 	            [ "${#bible_pictures[@]}" -gt 0 ] && echo -e "\n" >> "${livros_abrev_pref[$contador_livros]}"/${nr_cap}.md
@@ -85,14 +90,13 @@ case $? in
 	done
 	;;
 4)
-	# Seleciona o arquivo
-	tipo=$(printQuestion -r "Tipo de arquivo? (*cmt,bible,book,dict) ")
 	echo "Selecione o arquivo"
 	arquivo="$(printQuestion -m -c 'find '${bibles_dir:=$PWD}'/ -type f -iname "*.mybible"' )"
-	nome_base="$(echo $arquivo | rev | cut -d '/' -f1 | rev | cut -d '.' -f1)"
-	echo $nome_base
-	nickname="$(printQuestion -r "Digite um nome curto")"
-
+	nome_base="$(echo "$arquivo" | rev | cut -d '/' -f1 | rev | cut -d '.' -f1)"
+	# nickname="$(echo $nome_base | cut -d '-' -f2 )"
+	nickname="$(printQuestion -r "Digite um nome curto (NVI, McArthur): ")"
+	
+	checkVariables nome_base nickname
 	mkdir $nickname
 	echo "$arquivo" && \
 	sqlite3 "$arquivo" "SELECT filename from data" > /tmp/id.list
@@ -111,8 +115,6 @@ case $? in
 	;;
 5)
 	# Pega a tabela dos comentarios e transforma para csv, com tabs
-	# Seleciona o arquivo
-	tipo=$(printQuestion -r "Tipo de arquivo? (*cmt,bible,book,dict) ")
 	echo "Selecione o arquivo"
 	arquivo="$(printQuestion -m -c 'find '${bibles_dir:=$PWD}'/ -type f -iname "*.mybible"' )"
 	nome_base="$(echo $arquivo | rev | cut -d '/' -f1 | rev | cut -d '.' -f1)"
@@ -122,18 +124,18 @@ case $? in
 2)
 	# Seleciona o arquivo
 	echo "Selecione o arquivo"
-	arquivo="$(printQuestion -m -c 'find '${bibles_dir:=$PWD}'/ -type f -iname "*.csv"' )"
+	arquivo="$(printQuestion -m -c 'find '${bibles_dir:=$PWD}'/ -type f -iname "comment-*.csv"' )"
 	nome_base="$(echo $arquivo | rev | cut -d '/' -f1 | rev | cut -d '.' -f1)"
 	echo $nome_base
-
-	nickname="$(printQuestion -r "Digite um nome curto")"
+	
+	nickname="$(echo $nome_base | cut -d '-' -f2)"
 	if printQuestion -y "Recriar arquivos working?"; then
 		cp "${nome_base}".csv working.csv
-		cp "${nome_base}"-out_images.txt working-imgs.txt
+		[ -f "${nome_base}-out_images.txt" ] && cp "${nome_base}"-out_images.txt working-imgs.txt
 	fi
 	# Prepara o csv
 	# Retira imagens que estao fora
-	if printQuestion -y "Remover imagens inexistentes do csv?"; then
+	if printQuestion -y "Remover imagens inexistentes do csv (as imagens que estão presentes devem estar em um arquivo working-imgs.txt, um arquivo por linha)?"; then
 		for i in `cat  working-imgs.txt`; do
 			sed -i "s/<p><img src='$i'\/><\/p>//g" working.csv
 		done
@@ -162,13 +164,43 @@ case $? in
 		# Le todos os comentarios do bd, um comentario por linha
 		readarray comentarios < <(cat working.csv)
 		for i in "${comentarios[@]}"; do
-			# A PARTIR DAQUI TEM Q CUSTOMIZAR PARA CADA COMENTÁRIO, ESSE FUNCIONA SOMENTE PARA
-			readarray com_capitulo < <(echo "${i%%$'\n'*}" | cut -f 6 | pandoc --wrap=none -s -f html -t markdown | grep -v -e '^$' | sed -z "s/\n\(\!\[\]\)/\1/g")
+			case "$nickname" in
+				'NVI'|'McArthur')
+				readarray com_capitulo < <(echo "${i%%$'\n'*}" | cut -f 6 | pandoc --wrap=none -s -f html -t markdown | grep -v -e '^$' | sed -z "s/\n\(\!\[\]\)/\1/g")
+				;;
+				'MHenry')
+				readarray com_capitulo < <(echo "${i%%$'\n'*}" | cut -f 6 | pandoc --wrap=none -s -f html -t markdown | grep -v -e '^$' | sed -z "s/\n\([^\*]\)/ \1/g")
+				;;
+				*)
+				echo "Erro, $nickname não suportado"
+				;;
+			esac
+
 			capitulo=$(echo "$i" | cut -f3)
 			capitulo=$(printf '%02d' $capitulo)
 			livro=$(echo "$i" | cut -f2)
 			for j in "${com_capitulo[@]}"; do
-				versiculo=$(echo "${j}" | cut -d ':' -f2 | grep -Eo "^[0-9]{1,3}" | sed 's/^0*//')
+				# A PARTIR DAQUI TEM Q CUSTOMIZAR PARA CADA COMENTÁRIO, ESSE FUNCIONA SOMENTE PARA NVI
+				case "$nickname" in
+					'NVI')
+						versiculo="$(echo "${j}" | cut -d ':' -f2 | grep -Eo "^[0-9]{1,3}" | sed 's/^0*//')"
+						;;
+					'McArthur')				
+						versiculo="$(echo "${j}" | grep -Eo "^\*\*[0-9]{1,3}:[ 0-9]+" | cut -d ':' -f2 | sed 's/ *//g')"
+						j="$(echo ${j} | sed "s|\*\*|\*|g")"
+						;;
+					'MHenry')				
+						versiculo="$(echo "${j}" | grep -Eo "^\**.*\*\*" | grep -Eo "[0-9]*" | head -n 1)"
+						j="$(echo ${j} | sed "s|\*\*|\*|g")"
+						;;
+					# 'AdamOT')				
+					# 	versiculo="$(echo "${j}" | grep -Eo "^\*\*[0-9]{1,3}:[ 0-9]+" | cut -d ':' -f2 | sed 's/ *//g')"
+					# 	j="$(echo ${j} | sed "s|\*\*|\*|g")"
+					# 	;;
+					*)
+						echo "Erro, $nickname não suportado"
+					exit 1
+				esac
 				echo "Livro $livro, Capitulo $capitulo, Versiculo $versiculo"
 				# Verifica se o versículo existe (se não é 0 por exemplo)
 				if [ "$versiculo" -ge 0 ]; then
@@ -219,16 +251,19 @@ case $? in
 	exit 1
 ;;
 7)
+	[ ! -d "pdf" ] && mkdir pdf
 	printQuestion -m "Um pdf por capitulo" "Um pdf por livro"
 	case $? in
 	1)
 		for i in "${livros_abrev_pref[@]}"; do
 			# cria um pdf para cada capitulo
+			mkdir pdf/"$i"
 			cd "$i"
 			for j in *.md; do
 				pandoc --latex-engine=xelatex -V urlcolor=cyan "$j" -o "$(basename $j .md)".pdf
 			# junta todos os capitulos em um doc pdf apenas... tentar Colocar um header com todos os livro bem pequenos, em cada livro os seus resp capitulos, se estiver no cap, o versiculo de cada livro.
 			done
+			mv *.pdf ../pdf/"$i"
 			cd -
 		done
 		;;
@@ -236,7 +271,7 @@ case $? in
 		for i in "${livros_abrev_pref[@]}"; do
 			# cria um pdf para cada capitulo
 			cd "$i"
-			pandoc --latex-engine=xelatex -V urlcolor=cyan *.md -o ../"$i".pdf
+			pandoc --latex-engine=xelatex -V urlcolor=cyan *.md -o ../pdf/"$i".pdf
 			# junta todos os capitulos em um doc pdf apenas... tentar Colocar um header com todos os livro bem pequenos, em cada livro os seus resp capitulos, se estiver no cap, o versiculo de cada livro.
 			cd -
 		done
