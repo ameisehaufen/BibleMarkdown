@@ -22,15 +22,14 @@ Os arquivos de suporte estão no diretório "original".
 - Execute o script e crie sua bíblia markdown com imagens.
 
 ## Aplicativos recomendados
-Linux - [Formiko](https://github.com/ondratu/formiko) -> tenho uma versão para x86_64 em formato AppImage disponível caso não consiga instalar via python ou apt
-Android - [Markor](https://play.google.com/store/apps/details?id=net.gsantner.markor&hl=en_US)
-iPhone iPad iOS - [Blockquote](https://apps.apple.com/us/app/blockquote-markdown-editor/id1396620426) -> nenhum app de iOS permite visualizar as imagens. Isso ocorreu após o lançamento do iOS 13.
-Windows - [Abricotine](http://abricotine.brrd.fr/)
-Mac - [Abricotine](http://abricotine.brrd.fr/) ou [MacDown](https://macdown.uranusjr.com/) (recomendado)
+- Linux - [Formiko](https://github.com/ondratu/formiko) ou [Abricotine](http://abricotine.brrd.fr/)-> tenho uma versão para x86_64 do formiko em formato AppImage disponível caso não consiga instalar via python ou apt.
+- Android - [Markor](https://play.google.com/store/apps/details?id=net.gsantner.markor&hl=en_US)
+- iPhone iPad iOS - [Blockquote](https://apps.apple.com/us/app/blockquote-markdown-editor/id1396620426) -> atualmente nenhum app de iOS permite visualizar as imagens. Isso ocorreu após o lançamento do iOS 13.
+- Windows - [Abricotine](http://abricotine.brrd.fr/)
+- Mac - [Abricotine](http://abricotine.brrd.fr/) ou [MacDown](https://macdown.uranusjr.com/)
 
 ## Atenção
 - Fique atento com bíblias em formatos digitais (oriundas de aplicativos ou por download) e sem procedência  (como essa), podem estar alteradas, incompletas, etc.
-
 
 
 ## Gênesis Capítulo 1
