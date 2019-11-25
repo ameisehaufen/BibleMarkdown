@@ -14,7 +14,7 @@ Faça o Download da versão completa na seção Releases e extraia em seu comput
 
 ## Como criar sua própria Bíblia em Markdown
 Os arquivos de suporte estão no diretório "original".
-- Use o software Simple Bible Reader (selecione o idioma espanhol), que é um conversor. Abra um formato qualquer (MySword, e-Sword, etc).
+- Use o conversor Simple Bible Reader (selecione o idioma espanhol),para windows. Abra um formato qualquer (MySword, e-Sword, etc). Ou abra os arquivos do mysword em um app para abrir arquivos sqlite e extraia a bíblia.
 - Converta para o formato que tenha um versículo por linha e nr de capítulo e versículo separados por tabulação (The Unbound bible - Unnamed BCSV)
 - Se for converter um comentário, use o formato de exportação 
 - coloque o arquivo no mesmo diretório do script cria biblia.
