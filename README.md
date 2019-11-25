@@ -3,7 +3,7 @@ Bíblia em formato Markdown com imagens de SweetPublishing.
 
 Esta versão da Bíblia foi criada a partir de uma versão baixada do projeto The Sword da CrossBible Society. Utilizamos a versão João Ferreira de Almeida Corrigida Fiel de 2007, a versão considerada por muitos como a mais fiel na língua portuguesa.
 
-Faça o Download da versão completa na seção Releases, navegue pela bíblia completa diretamente pelo diretório [acf2007-sweet](acf2007-sweet) deste repositório, ou, melhor, faça o Download deste repositório com a versão mais atual. Olhe o exemplo do Livro de Gênesis no diretório Gn deste repositório.
+Faça o Download da versão completa na seção Releases e extraia em seu computador ou celular. É importante ter um leitor de arquivos .md para ter uma melhor experiência, mas caso não tenha, use o editor de textos simples mesmo. Você pode navegar pela bíblia completa online no diretório [versão online](versoes_online) deste repositório.
 
 ## Motivação
 - Após incansáveis pesquisas, esse é o único formato digital realmente livre de uma Bíblia que permita anotações.
@@ -21,29 +21,33 @@ Os arquivos de suporte estão no diretório "original".
 - As Imagens podem ser baixadas de SweetPublishing, depois coloque em um Diretório chamado Imagens.
 - Execute o script e crie sua bíblia markdown com imagens.
 
+## Aplicativos recomendados
+Linux - [Formiko](https://github.com/ondratu/formiko) -> tenho uma versão para x86_64 em formato AppImage disponível caso não consiga instalar via python ou apt
+Android - [Markor](https://play.google.com/store/apps/details?id=net.gsantner.markor&hl=en_US)
+iPhone iPad iOS - [Blockquote](https://apps.apple.com/us/app/blockquote-markdown-editor/id1396620426) -> nenhum app de iOS permite visualizar as imagens. Isso ocorreu após o lançamento do iOS 13.
+Windows - [Abricotine](http://abricotine.brrd.fr/)
+Mac - [Abricotine](http://abricotine.brrd.fr/) ou [MacDown](https://macdown.uranusjr.com/) (recomendado)
+
 ## Atenção
-- Fique atento com bíblias em formato texto, pdf, etc, sem procedência, podem estar alteradas, incompletas, etc.
+- Fique atento com bíblias em formatos digitais (oriundas de aplicativos ou por download) e sem procedência  (como essa), podem estar alteradas, incompletas, etc.
 
-## Exemplo
 
-### Gênesis Capítulo 1
 
-1   No princípio criou Deus os céus e a terra.
+## Gênesis Capítulo 1
 
-> **Criou Deus.** O verbo “criar” vem do hebraico ‘bara, que na forma aqui usada descreve uma atividade de Deus, nunca do ser humano. … As primeiríssimas palavras da Bíblia apontam para o fato de que a criação traz a marca da atividade do próprio Deus.
-
-> Minhas anotações sobre o versículo
-
-> Posso colocar versiculos relacionados como links [Gn 2:3](acf2007-sweet/Gn/2.md#3)
+**1**   No princípio criou Deus os céus e a terra.
+> **Comentários NVI**: O verbo “criar” vem do hebraico ‘bara, que na forma aqui usada descreve uma atividade de Deus, nunca do ser humano. … As primeiríssimas palavras da Bíblia apontam para o fato de que a criação traz a marca da atividade do próprio Deus.
 
 ![](1-0.jpg)
 
-2   E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.
+**2**   E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.
 
 ![](2-0.jpg)
 
-3   E disse Deus: Haja luz; e houve luz.
+**3**   E disse Deus: Haja luz; e houve luz.
+> **Comentário do Usuário**: meus comentários pessoais
+> Posso colocar versiculos relacionados como links [Gn 2:3](acf2007-sweet/Gn/2.md#3)
 
-4   E viu Deus que era boa a luz; e fez Deus separação entre a luz e as trevas.
+**4**   E viu Deus que era boa a luz; e fez Deus separação entre a luz e as trevas.
 
-5   E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, o dia primeiro.
+**5**   E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, o dia primeiro.
